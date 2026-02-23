@@ -1,0 +1,108 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Global outline for debugging */
+* {
+  /* outline: 1px solid red; */
+}
+
+:root{
+    --color-Red: hsl(4, 100%, 67%);
+    --color-Red-30: hsla(4, 100%, 67%, 0.3); /* 30% opacity */
+    --color-Red-10: hsla(4, 100%, 67%, 0.1); /* 10% opacity */
+    --color-Blue-800: hsl(234, 29%, 20%);
+    --color-Blue-700: hsl(235, 18%, 26%);
+    --color-Grey: hsl(0, 0%,58%);
+    --color-White: hsl(0, 0%, 100%);
+   
+}
+
+html{
+    @apply text-[1.25vw];
+    font-family: 'Manrope', sans-serif;
+}
+body{
+    @apply relative col-x-center max-w-full w-screen min-h-screen lg:pt-[12.2rem] lg:aspect-[1440/1080] aspect-[375/842] lg:bg-[var(--color-Blue-800)] bg-[var(--color-White)] ;
+    
+}
+
+.sign-up-form{
+    @apply overflow-hidden lg:row-y-center lg:row-x-between col-x-center lg:w-[51.5rem] w-full lg:aspect-[1440/998] lg:p-[1.5rem] lg:rounded-[2.5rem] bg-[var(--color-White)] ;
+}
+
+.sign-up-form__illustration-mobile{
+    @apply  w-full lg:rounded-[1rem] md:hidden;
+}
+.sign-up-form__illustration-tablet {
+    @apply  w-full lg:rounded-[1rem] md:block hidden lg:hidden md:hidden;
+}
+.sign-up-form__content{
+    @apply  lg:text-[0.875rem] text-[3.375rem] lg:w-[47.5%] w-full lg:h-[26rem] h-full lg:col-x-center col-x-start lg:gap-y-[1.3rem] gap-y-[5rem] lg:pl-[2rem] pl-[5rem] lg:mt-[0.8rem] mt-[8.8rem] ;
+}
+.sign-up-form__content__header{
+    @apply  lg:text-[3.125rem] text-[8.5rem] leading-none font-bold  lg:pr-[1.5rem] lg:-translate-x-[0.2rem] tracking-tighter ;
+}
+.sign-up-form__content__paragraph{
+    @apply  lg:translate-x-[0.1rem] font-medium tracking-tight  ;
+}
+.sign-up-form__content__list-container{
+    @apply  w-full col-x-start lg:gap-y-[0.6rem] gap-y-[2.5rem] lg:mt-[0.1rem] lg:pr-0 pr-[2rem] ;
+}
+.newsletterForm {
+    @apply w-full lg:mt-[1rem] mt-[3rem] mb-[3rem] relative
+}
+.newsletterForm__content {
+    @apply col-x-start lg:gap-y-[0.5rem] gap-y-[2.5rem] 
+}
+.newsletterForm__content__label {
+    @apply lg:text-[0.67rem] text-[2.6rem] font-extrabold 
+}
+.newsletterForm__content__input {
+    @apply lg:w-full w-[93%] lg:h-[3rem] h-[11rem] lg:rounded-[0.3rem] rounded-[1.2rem] lg:text-[0.875rem] lg:px-[1.3rem] px-[5rem] cursor-custom border  ;
+}
+.sign-up-form__content__list{
+    @apply bg-[url('../assets/images/icon-list.svg')] bg-no-repeat bg-center lg:bg-[length:1.2rem_1.2rem] bg-[length:5rem_5rem] 
+    bg-[position:left_-0.1rem] lg:pl-[2.2rem] pl-[8.4rem] ;
+}
+.newsletterForm__content__submitBtn, .form-success__button{
+    @apply lg:text-[0.875rem] cursor-custom transition-all ease-in-out duration-300;
+    background-color: var(--color-Blue-800);
+    color: var(--color-White);
+}
+.newsletterForm__content__submitBtn:hover, .form-success__button:hover{
+    background-color: var(--color-Red);
+    box-shadow: 0 0.5rem 1rem var(--color-Red-30);}
+
+    button{
+        @apply cursor-custom;
+    }
+.newsletterForm__content__input.error {
+      @apply bg-[var(--color-Red-10)] outline outline-[var(--color-Red)];
+    
+
+}
+.newsletterForm__content__error {
+     @apply lg:text-[0.65rem] text-[2.6rem] absolute lg:right-[0.2rem] right-[5rem] text-[var(--color-Red)] ;
+}
+.newsletterForm__content__submitBtn {
+@apply lg:w-full w-[93%] lg:h-[3.3rem] h-[12rem] lg:mt-[0.9rem] mt-[3rem] lg:rounded-[0.3rem] rounded-[1.2rem] lg:text-[0.875rem] lg:font-extrabold
+}
+.sign-up-form__illustration-desktop {
+    @apply lg:w-[45.5%] lg:rounded-[1rem] lg:block hidden;
+}
+.form-success {
+    @apply bg-white  lg:w-[28rem] w-full lg:h-[29rem] lg:rounded-[2rem] lg:px-[3.5rem] px-[5rem] lg:py-[2.5rem] py-[16.5rem] col-x-start lg:gap-y-[2.3rem] gap-y-[8rem] absolute top-[15.5rem] ;
+}
+.form-success__icon {
+    @apply lg:w-[3.7rem] w-[14rem];
+}
+.form-success__title {
+    @apply lg:text-[3.125rem] text-[8.625rem] font-extrabold leading-[100%];
+}
+.form-success__text {
+    @apply lg:-translate-y-[1rem] -translate-y-[3rem] lg:text-[0.875rem] text-[3.25rem] lg:tracking-md tracking-wide leading-[155%] ;
+}
+.form-success__button {
+    @apply lg:-translate-y-[1rem] lg:text-[0.875rem] text-[3.25rem] tracking-md lg:w-[21rem] w-[100%] lg:h-[3.1rem] h-[12rem] lg:rounded-[0.5rem] rounded-[1.2rem] text-white lg:mt-0 mt-[45rem] ;
+}
