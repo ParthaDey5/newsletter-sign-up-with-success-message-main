@@ -14,7 +14,7 @@
 </head>
 
 <body>
-  
+
   <main class=" sign-up-form">
     <img src="./assets/images/illustration-sign-up-mobile.svg" alt="illustration-sign-up-mobile"
       class="sign-up-form__illustration-mobile">
@@ -33,16 +33,13 @@
 
       <form id="newsLetterForm" action="" class="newsletterForm ">
         <div class="newsletterForm__content">
-          <label for="email"
-            class="newsletterForm__content__label">Email
+          <label for="email" class="newsletterForm__content__label">Email
             address</label>
           <input type="email" id="email" name="email" placeholder="email@company.com"
-            class="newsletterForm__content__input"
-            autocomplete="off">
+            class="newsletterForm__content__input" autocomplete="off">
           <div id="emailError" class="newsletterForm__content__error" hidden>
-            Valid email required</div>
-          <button type="submit"
-            class="newsletterForm__content__submitBtn ">Subscribe
+            </div>
+          <button type="submit" class="newsletterForm__content__submitBtn ">Subscribe
             to monthly newsletter</button>
         </div>
       </form>
@@ -50,18 +47,15 @@
     <img src="./assets/images/illustration-sign-up-desktop.svg" alt="illustration-sign-up-desktop"
       class="sign-up-form__illustration-desktop">
   </main>
-  <div id="successMsg "
-    class="form-success hide">
+  <div id="successMsg " class="form-success hide">
     <img src="./assets/images/icon-success.svg" alt="icon-success" class="form-success__icon ">
     <h1 class="form-success__title">Thanks for
       subscribing!</h1>
-    <p
-      class="form-success__text ">
+    <p class="form-success__text ">
       A confirmation email has been
       sent to <strong class="emailName"></strong>. Please open it and click the button inside to confirm your
       subscription.</p>
-    <button
-      class="form-success__button">Dismiss
+    <button class="form-success__button">Dismiss
       message</button>
   </div>
 
@@ -71,11 +65,13 @@
     document.getElementById('newsLetterForm').addEventListener('submit', function (e) {
       e.preventDefault();
       const email = document.getElementById('email').value;
+      const emailError = document.getElementById('emailError');
 
 
       if (email === "") {
-        alert('Please enter your email address');
-        return;
+        emailError.removeAttribute('hidden');
+        emailError.textContent = 'Please enter your email address';
+
       }
       // Use Validator.js for proper email validation
       const data = { email: email };
@@ -83,22 +79,21 @@
       const validation = new Validator(data, rules);
 
       if (validation.passes()) {
-        
-        const emailError = document.getElementById('emailError');
+
         const emailName = document.querySelector('.emailName');
         // Success - form is valid
-        emailError?.setAttribute('hidden', '');
+
         document.querySelector('.sign-up-form').classList.add('hide');
         document.getElementById('email').classList.remove('error');
         document.querySelector('.form-success').classList.remove('hide');
-       
-        emailName? emailName.textContent = email: null;
-       
+
+        emailName ? emailName.textContent = email : null;
+
 
       } else {
         // Error - show validation messages
         const emailError = document.getElementById('emailError');
-        emailError?.removeAttribute('hidden');
+
         document.getElementById('email').classList.add('error');
 
         return;
@@ -106,41 +101,45 @@
     });
 
     // Add this after your existing submit listener
-document.getElementById('email').addEventListener('input', function(e) {
-  const email = e.target.value;
-  const emailError = document.getElementById('emailError');
-  
-  if (email === "") {
-    // Hide error when empty
-    emailError?.setAttribute('hidden', '');
-    e.target.classList.remove('error');
-    return;
-  }
-  
-  // Validate in real-time
-  const data = { email: email };
-  const rules = { email: 'required|email' };
-  const validation = new Validator(data, rules);
-  
-  if (validation.passes()) {
-    // Hide error when valid
-    emailError?.setAttribute('hidden', '');
-    e.target.classList.remove('error');
-  } else {
-    // Show error when invalid
-    emailError?.removeAttribute('hidden');
-    e.target.classList.add('error');
-  }
-});
+    document.getElementById('email').addEventListener('input', function (e) {
+      const email = e.target.value;
+      const emailError = document.getElementById('emailError');
 
+      if (email === "") {
+        // Hide error when empty
+        emailError?.setAttribute('hidden', '');
+        e.target.classList.remove('error');
+        return;
+      } else {
+        emailError.textContent = 'Valid email required'
+
+
+        // Validate in real-time
+        const data = { email: email };
+        const rules = { email: 'required|email' };
+        const validation = new Validator(data, rules);
+
+        if (validation.passes()) {
+          // Hide error when valid
+          emailError?.setAttribute('hidden', '');
+          e.target.classList.remove('error');
+        } else {
+          // Show error when invalid
+          emailError?.removeAttribute('hidden');
+          e.target.classList.add('error');
+        }
+      }
+    });
+
+    const newsLetterForm = document.getElementById('newsLetterForm');
     const dismissBtn = document.querySelector('.form-success__button');
     if (dismissBtn) {
       dismissBtn.addEventListener('click', function () {
         document.querySelector('.sign-up-form').classList.remove('hide');
         // Show success message
         document.querySelector('.form-success').classList.add('hide');
+        newsLetterForm.reset();
 
-        document.getElementById('email').value = '';
       });
     }
 
