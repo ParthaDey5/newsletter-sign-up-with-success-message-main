@@ -91,7 +91,9 @@
         document.querySelector('.sign-up-form').classList.add('hide');
         document.getElementById('email').classList.remove('error');
         document.querySelector('.form-success').classList.remove('hide');
-        emailName.textContent = email;
+       
+        emailName? emailName.textContent = email: null;
+       
 
       } else {
         // Error - show validation messages
@@ -102,6 +104,34 @@
         return;
       }
     });
+
+    // Add this after your existing submit listener
+document.getElementById('email').addEventListener('input', function(e) {
+  const email = e.target.value;
+  const emailError = document.getElementById('emailError');
+  
+  if (email === "") {
+    // Hide error when empty
+    emailError?.setAttribute('hidden', '');
+    e.target.classList.remove('error');
+    return;
+  }
+  
+  // Validate in real-time
+  const data = { email: email };
+  const rules = { email: 'required|email' };
+  const validation = new Validator(data, rules);
+  
+  if (validation.passes()) {
+    // Hide error when valid
+    emailError?.setAttribute('hidden', '');
+    e.target.classList.remove('error');
+  } else {
+    // Show error when invalid
+    emailError?.removeAttribute('hidden');
+    e.target.classList.add('error');
+  }
+});
 
     const dismissBtn = document.querySelector('.form-success__button');
     if (dismissBtn) {
