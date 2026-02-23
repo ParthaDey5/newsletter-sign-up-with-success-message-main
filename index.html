@@ -58,7 +58,7 @@
     <p
       class="form-success__text ">
       A confirmation email has been
-      sent to <strong>ash@loremcompany.com</strong>. Please open it and click the button inside to confirm your
+      sent to <strong class="emailName"></strong>. Please open it and click the button inside to confirm your
       subscription.</p>
     <button
       class="form-success__button">Dismiss
@@ -85,11 +85,13 @@
       if (validation.passes()) {
         
         const emailError = document.getElementById('emailError');
+        const emailName = document.querySelector('.emailName');
         // Success - form is valid
         emailError?.setAttribute('hidden', '');
         document.querySelector('.sign-up-form').classList.add('hide');
         document.getElementById('email').classList.remove('error');
         document.querySelector('.form-success').classList.remove('hide');
+        emailName.textContent = email;
 
       } else {
         // Error - show validation messages
