@@ -23,7 +23,7 @@ html{
     font-family: 'Manrope', sans-serif;
 }
 body{
-    @apply relative col-x-center max-w-full w-screen min-h-screen lg:pt-[12.2rem] lg:aspect-[1440/1080] aspect-[375/842] lg:bg-[var(--color-Blue-800)] bg-[var(--color-White)] ;
+    @apply relative col-x-center max-w-full w-screen min-h-screen lg:pt-[12.2rem] lg:aspect-[1440/1080] aspect-[375/842] lg:bg-[var(--color-Blue-800)] bg-[var(--color-White)] font-medium text-shadow-xs ;
     
 }
 
@@ -92,7 +92,7 @@ body{
     @apply lg:w-[45.5%] lg:rounded-[1rem] lg:block hidden;
 }
 .form-success {
-    @apply bg-white  lg:w-[28rem] w-full lg:h-[29rem] lg:rounded-[2rem] lg:px-[3.5rem] px-[5rem] lg:py-[2.5rem] py-[16.5rem] col-x-start lg:gap-y-[2.3rem] gap-y-[8rem] absolute top-[15.5rem] ;
+    @apply bg-white  lg:w-[28rem] w-full lg:h-[29rem] lg:rounded-[2rem] lg:px-[3rem] px-[5rem] lg:py-[2.5rem] py-[16.5rem] col-x-start lg:gap-y-[2.3rem] gap-y-[8rem] absolute top-[15.5rem] ;
 }
 .form-success__icon {
     @apply lg:w-[3.7rem] w-[14rem];
@@ -105,4 +105,7 @@ body{
 }
 .form-success__button {
     @apply lg:-translate-y-[1rem] lg:text-[0.875rem] text-[3.25rem] tracking-md lg:w-[21rem] w-[100%] lg:h-[3.1rem] h-[12rem] lg:rounded-[0.5rem] rounded-[1.2rem] text-white lg:mt-0 mt-[45rem] ;
+}
+.emailName{
+    @apply font-extrabold text-shadow-dark;
 }

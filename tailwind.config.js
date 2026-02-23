@@ -169,6 +169,9 @@ module.exports = {
         '.text-shadow': {
           'text-shadow': '0 0.04rem 0.02rem rgba(0, 0, 0, 0.1)',
         },
+        '.text-shadow-dark': {
+          'text-shadow': '0 0.05rem 0.005rem rgba(0, 0, 0, 0.4)',
+        },
         '.text-shadow-xs': {
           'text-shadow': '0 0.05rem 0.05rem rgba(0, 0, 0, 0.2)',
         },
