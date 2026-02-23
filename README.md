@@ -72,7 +72,7 @@ A responsive newsletter subscription form with email validation and success stat
 
 1. **Clone the repository**
    ```bash
-   git clone [repository-url]
+   git clone [https://github.com/ParthaDey5/newsletter-sign-up-with-success-message-main]
    cd newsletter-sign-up-with-success-message-main
    ```
 
@@ -136,7 +136,7 @@ The project uses a custom Tailwind configuration with:
 
 ## 📱 Demo
 
-[Live Demo](https://your-demo-url.com) | [GitHub Repository](https://github.com/yourusername/newsletter-sign-up-with-success-message)
+[Live Demo](https://newsletter-sign-up-with-success-mes-flame.vercel.app) | [GitHub Repository](https://github.com/ParthaDey5/newsletter-sign-up-with-success-message-main)
 
 ---
 
