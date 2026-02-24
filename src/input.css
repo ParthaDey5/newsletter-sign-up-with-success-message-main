@@ -92,7 +92,7 @@ body{
     @apply lg:w-[45.5%] lg:rounded-[1rem] lg:block hidden;
 }
 .form-success {
-    @apply bg-white  lg:w-[28rem] w-full lg:h-[29rem] lg:rounded-[2rem] lg:px-[3rem] px-[5rem] lg:py-[2.5rem] py-[16.5rem] col-x-start lg:gap-y-[2.3rem] gap-y-[8rem] absolute top-[15.5rem] transition duration-500 ease-out origin-center  ;
+    @apply bg-white  lg:w-[28rem] w-full lg:h-[29rem] lg:rounded-[2rem] lg:px-[3rem] px-[5rem] lg:py-[2.5rem] py-[16.5rem] col-x-start lg:gap-y-[2.3rem] gap-y-[8rem] absolute top-[15.5rem] transition duration-500 ease-in origin-center  ;
 }
 .form-success.dismiss {
     @apply transition-none;

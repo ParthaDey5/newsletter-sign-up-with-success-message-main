@@ -4,6 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Newsletter sign-up form with email validation and success message">
+  <meta name="keywords" content="newsletter, sign up, email validation">
   <!-- displays site properly based on user's device -->
 
   <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
@@ -30,14 +32,14 @@
         <li class="sign-up-form__content__list">And much more!</li>
       </ul>
 
-      <form id="newsLetterForm" action="" class="newsletterForm ">
+      <form id="newsLetterForm" novalidate class="newsletterForm ">
         <div class="newsletterForm__content">
           <label for="email" class="newsletterForm__content__label">Email
             address</label>
           <input type="email" id="email" name="email" placeholder="email@company.com"
             class="newsletterForm__content__input" autocomplete="off">
           <div id="emailError" class="newsletterForm__content__error" hidden>
-            </div>
+          </div>
           <button type="submit" class="newsletterForm__content__submitBtn ">Subscribe
             to monthly newsletter</button>
         </div>
@@ -52,7 +54,8 @@
       subscribing!</h1>
     <p class="form-success__text ">
       A confirmation email has been
-      sent to <strong class="emailName"></strong>. Please open it and click the button inside to confirm your
+      sent to <strong class="emailName">abc@gmail.com</strong>. Please open it and click the button inside to confirm
+      your
       subscription.</p>
     <button class="form-success__button">Dismiss
       message</button>
@@ -70,7 +73,7 @@
       if (email === "") {
         emailError.removeAttribute('hidden');
         emailError.textContent = 'Please enter your email address';
-
+        e.target.classList.add('error');
       }
       // Use Validator.js for proper email validation
       const data = { email: email };
@@ -78,13 +81,14 @@
       const validation = new Validator(data, rules);
 
       if (validation.passes()) {
+        e.target.classList.remove('error');
 
         const emailName = document.querySelector('.emailName');
         // Success - form is valid
 
         document.querySelector('.sign-up-form').classList.add('hide');
         document.getElementById('email').classList.remove('error');
-        
+
         document.querySelector('.form-success').classList.remove('scale-0');
 
         emailName ? emailName.textContent = email : null;
@@ -137,10 +141,10 @@
       dismissBtn.addEventListener('click', function () {
         document.querySelector('.sign-up-form').classList.remove('hide');
         // Show success message
-        document.querySelector('.form-success').classList.add('scale-0');
         document.querySelector('.form-success').classList.add('dismiss');
+        document.querySelector('.form-success').classList.add('scale-0');
         setTimeout(() => {
-          document.querySelector('.form-success').classList.remove('dismiss');         
+          document.querySelector('.form-success').classList.remove('dismiss');
         }, 1000);
         newsLetterForm.reset();
 
