@@ -62,7 +62,7 @@ body{
     @apply lg:w-full w-[93%] lg:h-[3rem] h-[11rem] lg:rounded-[0.3rem] rounded-[1.2rem] lg:text-[0.875rem] lg:px-[1.3rem] px-[5rem] cursor-custom border  ;
 }
 .sign-up-form__content__list{
-    @apply bg-[url('../assets/images/icon-list.svg')] bg-no-repeat bg-center lg:bg-[length:1.2rem_1.2rem] bg-[length:5rem_5rem] 
+    @apply bg-[url('../assets/images/icon-list.svg')] bg-no-repeat bg-center lg:bg-[length:1.2rem_1.4rem] bg-[length:5rem_5rem] 
     bg-[position:left_-0.1rem] lg:pl-[2.2rem] pl-[8.4rem] ;
 }
 .newsletterForm__content__submitBtn, .form-success__button{
@@ -92,7 +92,10 @@ body{
     @apply lg:w-[45.5%] lg:rounded-[1rem] lg:block hidden;
 }
 .form-success {
-    @apply bg-white  lg:w-[28rem] w-full lg:h-[29rem] lg:rounded-[2rem] lg:px-[3rem] px-[5rem] lg:py-[2.5rem] py-[16.5rem] col-x-start lg:gap-y-[2.3rem] gap-y-[8rem] absolute top-[15.5rem] ;
+    @apply bg-white  lg:w-[28rem] w-full lg:h-[29rem] lg:rounded-[2rem] lg:px-[3rem] px-[5rem] lg:py-[2.5rem] py-[16.5rem] col-x-start lg:gap-y-[2.3rem] gap-y-[8rem] absolute top-[15.5rem] transition duration-500 ease-out origin-center  ;
+}
+.form-success.dismiss {
+    @apply transition-none;
 }
 .form-success__icon {
     @apply lg:w-[3.7rem] w-[14rem];
