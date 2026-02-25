@@ -98,85 +98,96 @@
     <script src="./classic.validator.min.js"></script>
 
     <script>
-      const emailError = document.getElementById("emailError");
-      const signUpForm = document.querySelector(".sign-up-form");
-      const emailName = document.querySelector(".emailName");
-      const formSuccess = document.querySelector(".form-success");
-      const newsletterFormContentInput = document.querySelector(
-        ".newsletterForm__content__input"
-      );
+      // DOM Elements Cache
+      const elements = {
+        emailError: document.getElementById("emailError"),
+        signUpForm: document.querySelector(".sign-up-form"),
+        emailName: document.querySelector(".emailName"),
+        formSuccess: document.querySelector(".form-success"),
+        emailInput: document.querySelector(".newsletterForm__content__input"),
+        newsLetterForm: document.getElementById("newsLetterForm"),
+        dismissBtn: document.querySelector(".form-success__button")
+      };
 
-      document
-        .getElementById("newsLetterForm")
-        .addEventListener("submit", function (e) {
-          e.preventDefault();
-          const emailValue = document.getElementById("email").value;
+      // Validation Function
+      function validateEmail(email) {
+        const data = { email };
+        const rules = { email: "required|email" };
+        const validation = new Validator(data, rules);
+        return validation.passes();
+      }
 
-          if (emailValue === "") {
-            emailError.removeAttribute("hidden");
-            emailError.textContent = "Please enter your email address";
-            newsletterFormContentInput.classList.add("error");
-          }
-          // Use Validator.js for proper email validation
-          const data = { email: emailValue };
-          const rules = { email: "required|email" };
-          const validation = new Validator(data, rules);
+      // Error Management Functions
+      function showError(message) {
+        elements.emailError.textContent = message;
+        elements.emailError.removeAttribute("hidden");
+        elements.emailInput.classList.add("error");
+      }
 
-          if (validation.passes()) {
-            // Success - form is valid
-            emailError.textContent = "";
-            signUpForm.classList.add("hide");
-            emailError.setAttribute("hidden", "");
-            formSuccess.classList.remove("scale-0");
-            emailName ? (emailName.textContent = emailValue) : null;
-            newsletterFormContentInput.classList.remove("error");
-          } else {
-            newsletterFormContentInput.classList.add("error");
-          }
-        });
+      function hideError() {
+        elements.emailError.textContent = "";
+        elements.emailError.setAttribute("hidden", "");
+        elements.emailInput.classList.remove("error");
+      }
 
-      // Add this after your existing submit listener
-      document.getElementById("email").addEventListener("input", function (e) {
-        const emailInputValue = e.target.value;
-
-        if (emailInputValue === "") {
-          // Hide error when empty
-          emailError?.setAttribute("hidden", "");
-          return;
-        } else {
-          emailError.textContent = "Valid email required";
-
-          // Validate in real-time
-          const data = { email: emailInputValue };
-          const rules = { email: "required|email" };
-          const validation = new Validator(data, rules);
-
-          if (validation.passes()) {
-            // Hide error when valid
-            emailError?.setAttribute("hidden", "");
-            newsletterFormContentInput.classList.remove("error");
-          } else {
-            // Show error when invalid
-            emailError?.removeAttribute("hidden");
-            newsletterFormContentInput.classList.add("error");
-          }
+      // Form State Management
+      function showSuccess(email) {
+        hideError();
+        elements.signUpForm.classList.add("hide");
+        elements.formSuccess.classList.remove("scale-0");
+        if (elements.emailName) {
+          elements.emailName.textContent = email;
         }
-      });
+      }
 
-      const newsLetterForm = document.getElementById("newsLetterForm");
-      const dismissBtn = document.querySelector(".form-success__button");
-      if (dismissBtn) {
-        dismissBtn.addEventListener("click", function () {
-          signUpForm.classList.remove("hide");
-          // Show success message
-          formSuccess.classList.add("dismiss");
-          formSuccess.classList.add("scale-0");
-          setTimeout(() => {
-            formSuccess.classList.remove("dismiss");
-          }, 1000);
-          
-          newsLetterForm.reset();
-        });
+      function resetForm() {
+        elements.signUpForm.classList.remove("hide");
+        elements.formSuccess.classList.add("dismiss");
+        elements.formSuccess.classList.add("scale-0");
+        setTimeout(() => {
+          elements.formSuccess.classList.remove("dismiss");
+        }, 1000);
+        elements.newsLetterForm.reset();
+      }
+
+      // Event Handlers
+      function handleSubmit(e) {
+        e.preventDefault();
+        const emailValue = elements.emailInput.value;
+
+        if (emailValue === "") {
+          showError("Please enter your email address");
+          return;
+        }
+
+        if (validateEmail(emailValue)) {
+          showSuccess(emailValue);
+        } else {
+          showError("Valid email required");
+        }
+      }
+
+      function handleInput(e) {
+        const emailValue = e.target.value;
+
+        if (emailValue === "") {
+          hideError();
+          return;
+        }
+
+        if (validateEmail(emailValue)) {
+          hideError();
+        } else {
+          showError("Valid email required");
+        }
+      }
+
+      // Event Listeners
+      elements.newsLetterForm.addEventListener("submit", handleSubmit);
+      elements.emailInput.addEventListener("input", handleInput);
+      
+      if (elements.dismissBtn) {
+        elements.dismissBtn.addEventListener("click", resetForm);
       }
     </script>
   </body>
