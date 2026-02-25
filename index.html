@@ -1,156 +1,183 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Newsletter sign-up form with email validation and success message"
+    />
+    <meta name="keywords" content="newsletter, sign up, email validation" />
+    <!-- displays site properly based on user's device -->
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Newsletter sign-up form with email validation and success message">
-  <meta name="keywords" content="newsletter, sign up, email validation">
-  <!-- displays site properly based on user's device -->
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/images/favicon-32x32.png"
+    />
+    <link rel="stylesheet" href="./src/output.css" />
+    <title>
+      Frontend Mentor | Newsletter sign-up form with success message
+    </title>
+  </head>
 
-  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
-  <link rel="stylesheet" href="./src/output.css">
-  <title>Frontend Mentor | Newsletter sign-up form with success message</title>
+  <body>
+    <main class="sign-up-form">
+      <img
+        src="./assets/images/illustration-sign-up-mobile.svg"
+        alt="illustration-sign-up-mobile"
+        class="sign-up-form__illustration-mobile"
+      />
+      <img
+        src="./assets/images/illustration-sign-up-tablet.svg"
+        alt="illustration-sign-up-tablet"
+        class="sign-up-form__illustration-tablet"
+      />
+      <div class="sign-up-form__content">
+        <h1 class="sign-up-form__content__header">Stay updated!</h1>
+        <p class="sign-up-form__content__paragraph">
+          Join 60,000+ product managers receiving monthly updates on:
+        </p>
+        <ul class="sign-up-form__content__list-container">
+          <li class="sign-up-form__content__list">
+            Product discovery and building what matters
+          </li>
+          <li class="sign-up-form__content__list">
+            Measuring to ensure updates are a success
+          </li>
+          <li class="sign-up-form__content__list">And much more!</li>
+        </ul>
 
-
-</head>
-
-<body>
-  <main class=" sign-up-form">
-    <img src="./assets/images/illustration-sign-up-mobile.svg" alt="illustration-sign-up-mobile"
-      class="sign-up-form__illustration-mobile">
-    <img src="./assets/images/illustration-sign-up-tablet.svg" alt="illustration-sign-up-tablet"
-      class="sign-up-form__illustration-tablet">
-    <div class="sign-up-form__content ">
-      <h1 class="sign-up-form__content__header">Stay updated!
-      </h1>
-      <p class="sign-up-form__content__paragraph">Join 60,000+ product managers
-        receiving monthly updates on:</p>
-      <ul class="sign-up-form__content__list-container">
-        <li class="sign-up-form__content__list">Product discovery and building what matters</li>
-        <li class="sign-up-form__content__list">Measuring to ensure updates are a success</li>
-        <li class="sign-up-form__content__list">And much more!</li>
-      </ul>
-
-      <form id="newsLetterForm" novalidate class="newsletterForm ">
-        <div class="newsletterForm__content">
-          <label for="email" class="newsletterForm__content__label">Email
-            address</label>
-          <input type="email" id="email" name="email" placeholder="email@company.com"
-            class="newsletterForm__content__input" autocomplete="off">
-          <div id="emailError" class="newsletterForm__content__error" hidden>
+        <form id="newsLetterForm" novalidate class="newsletterForm">
+          <div class="newsletterForm__content">
+            <label for="email" class="newsletterForm__content__label">
+              Email address
+            </label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="email@company.com"
+              class="newsletterForm__content__input"
+              autocomplete="off"
+            />
+            <div
+              id="emailError"
+              class="newsletterForm__content__error"
+              hidden
+            ></div>
+            <button type="submit" class="newsletterForm__content__submitBtn">
+              Subscribe to monthly newsletter
+            </button>
           </div>
-          <button type="submit" class="newsletterForm__content__submitBtn ">Subscribe
-            to monthly newsletter</button>
-        </div>
-      </form>
+        </form>
+      </div>
+      <img
+        src="./assets/images/illustration-sign-up-desktop.svg"
+        alt="illustration-sign-up-desktop"
+        class="sign-up-form__illustration-desktop"
+      />
+    </main>
+    <div id="successMsg " class="form-success scale-0">
+      <img
+        src="./assets/images/icon-success.svg"
+        alt="icon-success"
+        class="form-success__icon"
+      />
+      <h1 class="form-success__title">Thanks for subscribing!</h1>
+      <p class="form-success__text">
+        A confirmation email has been sent to
+        <strong class="emailName">abc@gmail.com</strong>
+        . Please open it and click the button inside to confirm your
+        subscription.
+      </p>
+      <button class="form-success__button">Dismiss message</button>
     </div>
-    <img src="./assets/images/illustration-sign-up-desktop.svg" alt="illustration-sign-up-desktop"
-      class="sign-up-form__illustration-desktop">
-  </main>
-  <div id="successMsg " class="form-success scale-0">
-    <img src="./assets/images/icon-success.svg" alt="icon-success" class="form-success__icon ">
-    <h1 class="form-success__title">Thanks for
-      subscribing!</h1>
-    <p class="form-success__text ">
-      A confirmation email has been
-      sent to <strong class="emailName">abc@gmail.com</strong>. Please open it and click the button inside to confirm
-      your
-      subscription.</p>
-    <button class="form-success__button">Dismiss
-      message</button>
-  </div>
 
-  <script src="./classic.validator.min.js"></script>
+    <script src="./classic.validator.min.js"></script>
 
-  <script>
+    <script>
+      const emailError = document.getElementById("emailError");
+      const signUpForm = document.querySelector(".sign-up-form");
+      const emailName = document.querySelector(".emailName");
+      const formSuccess = document.querySelector(".form-success");
+      const newsletterFormContentInput = document.querySelector(
+        ".newsletterForm__content__input"
+      );
 
+      document
+        .getElementById("newsLetterForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+          const emailValue = document.getElementById("email").value;
 
-    const emailError = document.getElementById('emailError');
-    const signUpForm = document.querySelector('.sign-up-form');
-    const emailName = document.querySelector('.emailName');
-    const formSuccess = document.querySelector('.form-success');
-    const newsletterFormContentInput = document.querySelector('.newsletterForm__content__input');
+          if (emailValue === "") {
+            emailError.removeAttribute("hidden");
+            emailError.textContent = "Please enter your email address";
+            newsletterFormContentInput.classList.add("error");
+          }
+          // Use Validator.js for proper email validation
+          const data = { email: emailValue };
+          const rules = { email: "required|email" };
+          const validation = new Validator(data, rules);
 
-    document.getElementById('newsLetterForm').addEventListener('submit', function (e) {
-      e.preventDefault();
-      const emailValue = document.getElementById('email').value;
+          if (validation.passes()) {
+            // Success - form is valid
+            emailError.textContent = "";
+            signUpForm.classList.add("hide");
+            emailError.setAttribute("hidden", "");
+            formSuccess.classList.remove("scale-0");
+            emailName ? (emailName.textContent = emailValue) : null;
+            newsletterFormContentInput.classList.remove("error");
+          } else {
+            newsletterFormContentInput.classList.add("error");
+          }
+        });
 
-      if (emailValue === "") {
-        emailError.removeAttribute('hidden');
-        emailError.textContent = 'Please enter your email address';
-        newsletterFormContentInput.classList.add('error');
+      // Add this after your existing submit listener
+      document.getElementById("email").addEventListener("input", function (e) {
+        const emailInputValue = e.target.value;
 
-      }
-      // Use Validator.js for proper email validation
-      const data = { email: emailValue };
-      const rules = { email: 'required|email' };
-      const validation = new Validator(data, rules);
-
-      if (validation.passes()) {
-
-        // Success - form is valid
-        emailError.textContent = '';
-        signUpForm.classList.add('hide');
-        emailError.setAttribute('hidden', '');
-        formSuccess.classList.remove('scale-0');
-        emailName ? emailName.textContent = emailValue : null;
-        newsletterFormContentInput.classList.remove('error');     
-      } else {
-        newsletterFormContentInput.classList.add('error');
-      }
-      
-    });
-
-    // Add this after your existing submit listener
-    document.getElementById('email').addEventListener('input', function (e) {
-      const emailInputValue = e.target.value;
-
-      if (emailInputValue === "") {
-        // Hide error when empty
-        emailError?.setAttribute('hidden', '');
-        return;
-      } else {
-        emailError.textContent = 'Valid email required'
-
-
-        // Validate in real-time
-        const data = { email: emailInputValue };
-        const rules = { email: 'required|email' };
-        const validation = new Validator(data, rules);
-
-        if (validation.passes()) {
-          // Hide error when valid
-          emailError?.setAttribute('hidden', '');
-          newsletterFormContentInput.classList.remove('error');
-
+        if (emailInputValue === "") {
+          // Hide error when empty
+          emailError?.setAttribute("hidden", "");
+          return;
         } else {
-          // Show error when invalid
-          emailError?.removeAttribute('hidden');
-          newsletterFormContentInput.classList.add('error');
+          emailError.textContent = "Valid email required";
 
+          // Validate in real-time
+          const data = { email: emailInputValue };
+          const rules = { email: "required|email" };
+          const validation = new Validator(data, rules);
+
+          if (validation.passes()) {
+            // Hide error when valid
+            emailError?.setAttribute("hidden", "");
+            newsletterFormContentInput.classList.remove("error");
+          } else {
+            // Show error when invalid
+            emailError?.removeAttribute("hidden");
+            newsletterFormContentInput.classList.add("error");
+          }
         }
-      }
-    });
-
-    const newsLetterForm = document.getElementById('newsLetterForm');
-    const dismissBtn = document.querySelector('.form-success__button');
-    if (dismissBtn) {
-      dismissBtn.addEventListener('click', function () {
-        signUpForm.classList.remove('hide');
-        // Show success message
-        formSuccess.classList.add('dismiss');
-        formSuccess.classList.add('scale-0');
-        setTimeout(() => {
-          formSuccess.classList.remove('dismiss');
-        }, 1000);
-        newsLetterForm.reset();
-
       });
-    }
 
-  </script>
-
-</body>
-
+      const newsLetterForm = document.getElementById("newsLetterForm");
+      const dismissBtn = document.querySelector(".form-success__button");
+      if (dismissBtn) {
+        dismissBtn.addEventListener("click", function () {
+          signUpForm.classList.remove("hide");
+          // Show success message
+          formSuccess.classList.add("dismiss");
+          formSuccess.classList.add("scale-0");
+          setTimeout(() => {
+            formSuccess.classList.remove("dismiss");
+          }, 1000);
+          
+          newsLetterForm.reset();
+        });
+      }
+    </script>
+  </body>
 </html>
