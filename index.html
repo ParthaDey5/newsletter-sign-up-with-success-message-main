@@ -64,73 +64,71 @@
   <script src="./classic.validator.min.js"></script>
 
   <script>
+
+
+    const emailError = document.getElementById('emailError');
+    const signUpForm = document.querySelector('.sign-up-form');
+    const emailName = document.querySelector('.emailName');
+    const formSuccess = document.querySelector('.form-success');
+    const newsletterFormContentInput = document.querySelector('.newsletterForm__content__input');
+
     document.getElementById('newsLetterForm').addEventListener('submit', function (e) {
       e.preventDefault();
-      const email = document.getElementById('email').value;
-      const emailError = document.getElementById('emailError');
+      const emailValue = document.getElementById('email').value;
 
-
-      if (email === "") {
+      if (emailValue === "") {
         emailError.removeAttribute('hidden');
         emailError.textContent = 'Please enter your email address';
-        e.target.classList.add('error');
+        newsletterFormContentInput.classList.add('error');
+
       }
       // Use Validator.js for proper email validation
-      const data = { email: email };
+      const data = { email: emailValue };
       const rules = { email: 'required|email' };
       const validation = new Validator(data, rules);
 
       if (validation.passes()) {
-        e.target.classList.remove('error');
 
-        const emailName = document.querySelector('.emailName');
         // Success - form is valid
-
-        document.querySelector('.sign-up-form').classList.add('hide');
-        document.getElementById('email').classList.remove('error');
-
-        document.querySelector('.form-success').classList.remove('scale-0');
-
-        emailName ? emailName.textContent = email : null;
-
-
+        emailError.textContent = '';
+        signUpForm.classList.add('hide');
+        emailError.setAttribute('hidden', '');
+        formSuccess.classList.remove('scale-0');
+        emailName ? emailName.textContent = emailValue : null;
+        newsletterFormContentInput.classList.remove('error');     
       } else {
-        // Error - show validation messages
-        const emailError = document.getElementById('emailError');
-
-        document.getElementById('email').classList.add('error');
-
-        return;
+        newsletterFormContentInput.classList.add('error');
       }
+      
     });
 
     // Add this after your existing submit listener
     document.getElementById('email').addEventListener('input', function (e) {
-      const email = e.target.value;
-      const emailError = document.getElementById('emailError');
+      const emailInputValue = e.target.value;
 
-      if (email === "") {
+      if (emailInputValue === "") {
         // Hide error when empty
         emailError?.setAttribute('hidden', '');
-        e.target.classList.remove('error');
         return;
       } else {
         emailError.textContent = 'Valid email required'
 
 
         // Validate in real-time
-        const data = { email: email };
+        const data = { email: emailInputValue };
         const rules = { email: 'required|email' };
         const validation = new Validator(data, rules);
 
         if (validation.passes()) {
           // Hide error when valid
           emailError?.setAttribute('hidden', '');
-          e.target.classList.remove('error');
+          newsletterFormContentInput.classList.remove('error');
+
         } else {
           // Show error when invalid
           emailError?.removeAttribute('hidden');
-          e.target.classList.add('error');
+          newsletterFormContentInput.classList.add('error');
+
         }
       }
     });
@@ -139,12 +137,12 @@
     const dismissBtn = document.querySelector('.form-success__button');
     if (dismissBtn) {
       dismissBtn.addEventListener('click', function () {
-        document.querySelector('.sign-up-form').classList.remove('hide');
+        signUpForm.classList.remove('hide');
         // Show success message
-        document.querySelector('.form-success').classList.add('dismiss');
-        document.querySelector('.form-success').classList.add('scale-0');
+        formSuccess.classList.add('dismiss');
+        formSuccess.classList.add('scale-0');
         setTimeout(() => {
-          document.querySelector('.form-success').classList.remove('dismiss');
+          formSuccess.classList.remove('dismiss');
         }, 1000);
         newsLetterForm.reset();
 

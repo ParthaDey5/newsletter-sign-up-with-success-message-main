@@ -83,7 +83,7 @@ body{
 
 }
 .newsletterForm__content__error {
-     @apply lg:text-[0.65rem] text-[2.6rem] absolute lg:right-[0.2rem] right-[5rem] text-[var(--color-Red)] ;
+     @apply lg:text-[0.65rem] text-[2.6rem] absolute lg:right-[0.2rem] right-[5rem] text-[var(--color-Red)] font-bold text-shadow ;
 }
 .newsletterForm__content__submitBtn {
 @apply lg:w-full w-[93%] lg:h-[3.3rem] h-[12rem] lg:mt-[0.9rem] mt-[3rem] lg:rounded-[0.3rem] rounded-[1.2rem] lg:text-[0.875rem] lg:font-extrabold
